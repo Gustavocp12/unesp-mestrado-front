@@ -1,0 +1,23 @@
+<ion-content [fullscreen]="true" class="backgroundColor ion-padding">
+  <ion-header>
+    <div class="label">
+      <p>Olá,</p>
+      <span class="ion-padding-start">Gustavo</span>
+    </div>
+    <div class="rectangle"></div>
+  </ion-header>
+
+  <section class="headerItems">
+    <p>Funcionalidades</p>
+    <div class="line"></div>
+  </section>
+
+  <section class="itemBox">
+    <ion-item *ngFor="let items of items">
+      <ion-icon slot="start" name="{{items.icon}}"></ion-icon>
+      <ion-label>{{items.name}}</ion-label>
+      <ion-icon slot="end" name="chevron-forward"></ion-icon>
+    </ion-item>
+  </section>
+
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "mestrado-front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

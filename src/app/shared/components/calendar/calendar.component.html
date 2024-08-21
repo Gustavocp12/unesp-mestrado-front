@@ -1,0 +1,11 @@
+<ion-backdrop *ngIf="true" [visible]="true"></ion-backdrop>
+<div id="box">
+  <ion-item>
+    <ion-datetime [(ngModel)]="date" #datetime presentation="date" [max]="maxDate">
+      <ion-buttons slot="buttons">
+        <ion-button color="danger" (click)="cancel()">Cancelar</ion-button>
+        <ion-button color="primary" (click)="confirm(datetime)">Confirmar</ion-button>
+      </ion-buttons>
+    </ion-datetime>
+  </ion-item>
+</div>
