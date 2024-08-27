@@ -8,8 +8,9 @@ import { NewDiagnosisPageRoutingModule } from './new-diagnosis-routing.module';
 
 import { NewDiagnosisPage } from './new-diagnosis.page';
 import {MaskDateDirective} from "../../../shared/directives/mask-date.directive";
-import {CalendarComponent} from "../../../shared/components/calendar/calendar.component";
 import {MaskCepDirective} from "../../../shared/directives/mask-cep.directive";
+import {PatientDataPageModule} from "./patient-data/patient-data.module";
+import {PatientDiagnosisPageModule} from "./patient-diagnosis/patient-diagnosis.module";
 
 @NgModule({
   imports: [
@@ -18,8 +19,11 @@ import {MaskCepDirective} from "../../../shared/directives/mask-cep.directive";
     IonicModule,
     NewDiagnosisPageRoutingModule,
     MaskDateDirective,
-    MaskCepDirective
+    MaskCepDirective,
+    PatientDataPageModule,
+    PatientDiagnosisPageModule
   ],
-  declarations: [NewDiagnosisPage, CalendarComponent]
+    exports: [],
+    declarations: [NewDiagnosisPage]
 })
 export class NewDiagnosisPageModule {}

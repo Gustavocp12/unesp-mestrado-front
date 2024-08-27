@@ -7,15 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewDiagnosisPage implements OnInit {
 
-  showCalendar = false;
-
   constructor() { }
 
   ngOnInit() {
-  }
-
-  openCalendar() {
-    this.showCalendar = true;
   }
 
 }
