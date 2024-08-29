@@ -26,6 +26,10 @@ export class LoginPage implements OnInit {
     })
   }
 
+  goToRegister(){
+    this.router.navigate(['/register']);
+  }
+
 
   public toggleType(input: string, icon: string) {
     const inputElement = document.getElementById(input) as HTMLInputElement;

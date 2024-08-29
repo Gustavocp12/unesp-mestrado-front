@@ -1,0 +1,10 @@
+@import "src/app/pages/login/login.page";
+
+.personal-data, .login-data{
+  width: 100%;
+}
+
+.pageBtn{
+  margin-top: 10px;
+  --background: var(--ion-color-primary) !important;
+}

@@ -1,0 +1,20 @@
+ion-item {
+  margin: 10px 0;
+
+  --border-color: white;
+  --background: #FFFFFF;
+  border: 1px solid #D0D5DD;
+  border-radius: 6px  ;
+
+  color: #000000;
+
+  ion-icon {
+    margin: 0 5px;
+    color: #000000;
+  }
+
+  ion-input {
+    margin-bottom: 5px;
+  }
+
+}

@@ -40,6 +40,10 @@
         p {
           color: #667085;
           font-weight: 500;
+
+          &:nth-child(2) {
+            color: #7F56D9;
+          }
         }
       }
 

@@ -1,0 +1,37 @@
+<ion-content [fullscreen]="true">
+  <div class="align-center-container">
+    <form>
+
+      <ion-img src="./assets/images/logo-completa.png"></ion-img>
+
+      <div class="texts">
+        <h2>CADASTRO</h2>
+        <p>Preencha o formulário para realizar o cadastro</p>
+        @if(actualPage === 1){
+          <p>Passo 1 de 2: Informações pessoais</p>
+        }@else if(actualPage === 2){
+          <p>Passo 2 de 2: Informações de login</p>
+        }
+      </div>
+
+      <ion-list>
+
+        @if(actualPage === 1){
+          <app-personal-data class="personal-data"></app-personal-data>
+        }@else if(actualPage === 2){
+          <app-login-data class="login-data"></app-login-data>
+        }
+
+      </ion-list>
+
+      @if(actualPage === 1){
+        <ion-button expand="block" class="pageBtn" (click)="nextPage()">Próximo <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+      }@else if(actualPage === 2){
+        <ion-button expand="block">Cadastrar</ion-button>
+        <ion-button expand="block" class="pageBtn" (click)="previousPage()"><ion-icon slot="start" name="arrow-back"></ion-icon> Voltar</ion-button>
+      }
+
+    </form>
+  </div>
+
+</ion-content>
