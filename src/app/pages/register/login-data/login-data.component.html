@@ -1,7 +1,7 @@
 <ion-item>
 
   <ion-input label="Email" labelPlacement="stacked" type="text" id="email" name="email"
-             placeholder="Insira seu email">
+             placeholder="Insira seu email" [(ngModel)]="loginData.email" (ionChange)="emitValues()">
   </ion-input>
 
 </ion-item>
@@ -9,7 +9,7 @@
 <ion-item>
 
   <ion-input label="Senha" labelPlacement="stacked" type="password" id="password" name="password"
-             placeholder="Insira sua senha">
+             placeholder="Insira sua senha" [(ngModel)]="loginData.password" (ionChange)="emitValues()">
   </ion-input>
 
 </ion-item>

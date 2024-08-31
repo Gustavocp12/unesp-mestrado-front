@@ -1,7 +1,7 @@
 <ion-item>
 
   <ion-input label="Nome" labelPlacement="stacked" type="text" id="name" name="name"
-             placeholder="Insira seu nome">
+             placeholder="Insira seu nome" [(ngModel)]="personalData.name" (ionChange)="emitValues()">
   </ion-input>
 
 </ion-item>
@@ -9,7 +9,7 @@
 <ion-item>
 
   <ion-input label="Celular" labelPlacement="stacked" type="text" id="phone" name="phone"
-             placeholder="Insira seu celular">
+             placeholder="Insira seu celular" [(ngModel)]="personalData.phone" (ionChange)="emitValues()">
   </ion-input>
 
 </ion-item>
@@ -17,7 +17,7 @@
 <ion-item>
 
   <ion-input label="Clínica/Hospital" labelPlacement="stacked" type="text" id="clinic" name="clinic"
-             placeholder="Insira o nome da clínica/hospital">
+             placeholder="Insira o nome da clínica/hospital" [(ngModel)]="personalData.clinic" (ionChange)="emitValues()">
   </ion-input>
 
 </ion-item>
@@ -25,7 +25,7 @@
 <ion-item>
 
   <ion-input label="CRMV" labelPlacement="stacked" type="text" id="crmv" name="crmv"
-             placeholder="Insira seu CRMV">
+             placeholder="Insira seu CRMV" [(ngModel)]="personalData.crmv" (ionChange)="emitValues()">
   </ion-input>
 
 </ion-item>
