@@ -12,9 +12,9 @@ export class PersonalDataComponent implements OnInit {
 
   personalData: PersonalData = {
     name: '',
-    phone: 0,
+    phone: null,
     clinic: '',
-    crmv: 0
+    crmv: null
   }
 
   emitValues(){

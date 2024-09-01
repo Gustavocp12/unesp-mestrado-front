@@ -25,10 +25,9 @@
       </ion-list>
 
       @if(actualPage === 1){
-        <ion-button expand="block" class="pageBtn" (click)="nextPage()">Próximo <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+        <ion-button expand="block" class="pageBtn" [disabled]="emptyFields" (click)="nextPage()">Próximo <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
       }@else if(actualPage === 2){
-        <ion-button expand="block" (click)="register()">Cadastrar</ion-button>
-        <ion-button expand="block" class="pageBtn" (click)="previousPage()"><ion-icon slot="start" name="arrow-back"></ion-icon> Voltar</ion-button>
+        <ion-button expand="block" [disabled]="emptyFields" (click)="register()">Cadastrar</ion-button>
       }
 
     </form>

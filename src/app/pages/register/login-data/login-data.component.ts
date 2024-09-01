@@ -14,9 +14,19 @@ export class LoginDataComponent  implements OnInit {
     email: '',
     password: ''
   }
+  emailValid: boolean = true;
 
   emitValues(){
-    this.loginD.emit(this.loginData);
+    this.validateEmail();
+
+    if (this.emailValid){
+      this.loginD.emit(this.loginData);
+    }
+  }
+
+  validateEmail(){
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+    this.emailValid = emailPattern.test(this.loginData.email);
   }
 
 

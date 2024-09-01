@@ -1,8 +1,8 @@
 export interface PersonalData {
   name: string;
-  phone: number;
+  phone: number | null;
   clinic: string;
-  crmv: number;
+  crmv: number | null;
 }
 
 export interface LoginData {
