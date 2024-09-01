@@ -29,6 +29,19 @@ export class LoginDataComponent  implements OnInit {
     this.emailValid = emailPattern.test(this.loginData.email);
   }
 
+  public toggleType(input: string, icon: string) {
+    const inputElement = document.getElementById(input) as HTMLInputElement;
+    const iconElement: any = document.querySelector(`#${icon}`);
+
+    if (inputElement.type === 'password') {
+      inputElement.type = 'text';
+      iconElement.name = 'eye-outline';
+    } else {
+      inputElement.type = 'password';
+      iconElement.name = 'eye-off-outline';
+    }
+  }
+
 
   constructor() { }
 

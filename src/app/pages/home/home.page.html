@@ -13,7 +13,7 @@
   </section>
 
   <section class="itemBox">
-    <ion-item *ngFor="let items of items">
+    <ion-item *ngFor="let items of items" (click)="redirectTo(items.redirectTo)">
       <ion-icon slot="start" name="{{items.icon}}"></ion-icon>
       <ion-label>{{items.name}}</ion-label>
       <ion-icon slot="end" name="chevron-forward"></ion-icon>

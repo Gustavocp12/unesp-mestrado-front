@@ -1,0 +1,139 @@
+ion-header{
+  background: #9B8AFB;
+  height: 50px;
+  margin: -16px;
+  padding-left: 16px;
+  width: 100vw;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  border-bottom-right-radius: 50% 50px;
+}
+
+form {
+  margin-top: 50px;
+
+  h5 { color: #667085; }
+
+  ion-list {
+    width: 100%;
+
+    border: none;
+    background: transparent;
+
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    ion-radio-group{
+      display: flex;
+      gap: 30px;
+      color: #000;
+      margin-top: 20px;
+    }
+
+    ion-radio::part(container) {
+      width: 25px;
+      height: 25px;
+
+      border-radius: 5px;
+      border: 2px solid #ddd;
+    }
+
+    ion-radio::part(mark) {
+      background: none;
+      transition: none;
+      transform: none;
+      border-radius: 0;
+    }
+
+    ion-radio.radio-checked::part(container) {
+      background: #3171e0;
+      border-color: transparent;
+    }
+
+    ion-radio.radio-checked::part(mark) {
+      width: 6px;
+      height: 10px;
+      margin-bottom: 3px;
+
+      border-width: 0 2px 2px 0;
+      border-style: solid;
+      border-color: #fff;
+
+      transform: rotate(45deg);
+    }
+
+    .ap-item{
+      display: flex;
+      gap: 20px;
+    }
+
+    ion-item {
+      width: 100%;
+
+      --border-color: white;
+      --background: #FFFFFF;
+      border: 1px solid #D0D5DD;
+      border-radius: 6px  ;
+
+      color: #000000;
+
+      ion-icon {
+        margin: 0 5px;
+        color: #474747;
+      }
+
+      ion-input {
+        margin-bottom: 5px;
+        --background: #fff;
+      }
+
+    }
+
+  }
+
+  .buttons {
+    width: 100%;
+    margin-top: 30px;
+    ion-button { --border-radius: 80px; width: 50%; }
+
+    .align-right {
+      width: 100%;
+
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .align-left {
+      width: 100%;
+
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .blue {
+      ion-button {
+        --background: #8098F9;
+      }
+    }
+
+    .red {
+      ion-button {
+        --background: #D92D20;
+      }
+    }
+
+    .white {
+      ion-button {
+        --background: #fff;
+        --color: #333;
+        --box-shadow: 0 2px 6px black;
+      }
+    }
+  }
+}

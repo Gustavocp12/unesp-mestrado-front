@@ -1,2 +1,107 @@
-<!--<app-patient-data></app-patient-data>-->
-<app-patient-diagnosis></app-patient-diagnosis>
+<ion-content [fullscreen]="true" class="backgroundColor ion-padding">
+
+  <ion-header>
+    Dados do paciente
+  </ion-header>
+
+  <form action="">
+    <ion-list>
+      <ion-item>
+        <ion-input
+          label="Nome"
+          labelPlacement="stacked"
+          fill="solid"
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Nome do paciente"
+          [(ngModel)]="patientData.name"
+          (ionInput)="verifyFields()"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          type="tel"
+          label="Data de nascimento"
+          labelPlacement="stacked"
+          placeholder="00/00/0000"
+          appMaskDate
+          name="birth"
+          [(ngModel)]="patientData.birth"
+          (ionInput)="verifyFields()">
+        </ion-input>
+        <ion-icon (click)="openCalendar()" slot="end" name="calendar"></ion-icon>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Sexo" placeholder="selecione" name="gender" [(ngModel)]="patientData.gender" (ionChange)="verifyFields()">
+          <ion-select-option value="masculino">Masculino</ion-select-option>
+          <ion-select-option value="feminino">Feminino</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="CEP"
+          labelPlacement="stacked"
+          fill="solid"
+          type="tel"
+          id="cep"
+          name="cep"
+          placeholder="00000-000"
+          [(ngModel)]="patientData.cep"
+          (ionInput)="verifyFields()"
+          appMaskCep>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Rua"
+          labelPlacement="stacked"
+          type="text"
+          id="street"
+          name="street"
+          placeholder="R. José Ferreira Fagundes"
+          [disabled]="true">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Bairro"
+          labelPlacement="stacked"
+          type="text"
+          id="email"
+          name="email"
+          placeholder="Jardim Nova Amizade"
+          [disabled]="true">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Número"
+          labelPlacement="stacked"
+          type="number"
+          id="number"
+          name="number"
+          placeholder="458"
+          [(ngModel)]="patientData.addressNumber"
+          (ionInput)="verifyFields()">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div class="buttons">
+      <div class="align-right blue">
+        <ion-button [disabled]="emptyFields" (click)="savePatientsAndNextPage()">
+          Salvar e ir para diagnóstico
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </form>
+</ion-content>
+
+<app-calendar *ngIf="showCalendar" (onConfirm)="selectDate($event)" (onCancel)="showCalendar = false"></app-calendar>

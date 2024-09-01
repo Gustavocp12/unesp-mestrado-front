@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'existing-diagnosis',
     loadChildren: () => import('./existing-diagnosis/existing-diagnosis.module').then( m => m.ExistingDiagnosisPageModule)
+  },
+  {
+    path: 'diagnostics',
+    loadChildren: () => import('./diagnostics/diagnostics.module').then( m => m.DiagnosticsPageModule)
   }
 
 ];

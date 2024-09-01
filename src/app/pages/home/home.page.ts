@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -16,12 +17,16 @@ export class HomePage implements OnInit {
     {
       name: 'Novo diagnóstico',
       icon: 'sparkles-outline',
-      redirectTo: ''
+      redirectTo: 'new-diagnosis'
     },
     {
       name: 'Diagóstico já existente',
       icon: 'analytics-outline',
-      redirectTo: ''
+      redirectTo: 'existing-diagnosis'
     }]
+
+  redirectTo(redirectTo: string) {
+    this.router.navigate([`/tabs/home/${redirectTo}`]);
+  }
 
 }

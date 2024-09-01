@@ -11,7 +11,7 @@ export class RegisterService {
   constructor(private http: HttpClient) { }
 
   public register(name: string, phone: number, clinic: string, crmv: number, email: string, password: string) {
-    return this.http.post<Register>(environment.api + '/createUser', { name: name, cellNumber: phone, clinic: clinic, crmv: crmv, email: email, password: password });
+    return this.http.post<Register>(environment.api + '/createUser', { name, phone, clinic, crmv, email, password });
   }
 
 }

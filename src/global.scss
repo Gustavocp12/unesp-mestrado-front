@@ -47,3 +47,13 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+.toastError {
+  --background: #F04438;
+  --color: #ffffff;
+}
+
+.toastSuccess {
+  --background: #14c73e;
+  --color: #ffffff;
+}
