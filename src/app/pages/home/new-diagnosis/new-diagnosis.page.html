@@ -35,8 +35,8 @@
 
       <ion-item>
         <ion-select label="Sexo" placeholder="selecione" name="gender" [(ngModel)]="patientData.gender" (ionChange)="verifyFields()">
-          <ion-select-option value="masculino">Masculino</ion-select-option>
-          <ion-select-option value="feminino">Feminino</ion-select-option>
+          <ion-select-option value="{{Gender.MASCULINO}}">Masculino</ion-select-option>
+          <ion-select-option value="{{Gender.FEMININO}}">Feminino</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -50,7 +50,7 @@
           name="cep"
           placeholder="00000-000"
           [(ngModel)]="patientData.cep"
-          (ionInput)="verifyFields()"
+          (ionInput)="verifyFields(); searchCep()"
           appMaskCep>
         </ion-input>
       </ion-item>
@@ -63,6 +63,7 @@
           id="street"
           name="street"
           placeholder="R. José Ferreira Fagundes"
+          [(ngModel)]="address.street"
           [disabled]="true">
         </ion-input>
       </ion-item>
@@ -72,9 +73,10 @@
           label="Bairro"
           labelPlacement="stacked"
           type="text"
-          id="email"
-          name="email"
+          id="neighborhood"
+          name="neighborhood"
           placeholder="Jardim Nova Amizade"
+          [(ngModel)]="address.neighborhood"
           [disabled]="true">
         </ion-input>
       </ion-item>

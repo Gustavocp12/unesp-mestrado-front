@@ -7,7 +7,8 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage
-  },  {
+  },
+  {
     path: 'new-diagnosis',
     loadChildren: () => import('./new-diagnosis/new-diagnosis.module').then( m => m.NewDiagnosisPageModule)
   },
@@ -16,7 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('./existing-diagnosis/existing-diagnosis.module').then( m => m.ExistingDiagnosisPageModule)
   },
   {
-    path: 'diagnostics',
+    path: 'diagnostics/:id',
     loadChildren: () => import('./diagnostics/diagnostics.module').then( m => m.DiagnosticsPageModule)
   }
 

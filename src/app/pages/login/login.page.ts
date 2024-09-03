@@ -21,7 +21,9 @@ export class LoginPage implements OnInit {
   }
 
   login(){
-    this.authService.login(this.loginInterface.email, this.loginInterface.password).subscribe(() => {
+    this.authService.login(this.loginInterface.email, this.loginInterface.password).subscribe((res: any) => {
+      localStorage.setItem('token', res);
+
       this.router.navigate(['/tabs']);
     })
   }
