@@ -5,11 +5,7 @@ import {FunctionsService} from "../../../shared/services/functions.service";
 import {Router} from "@angular/router";
 import {ViacepService} from "../../../shared/services/viacep.service";
 import {LoadingController} from "@ionic/angular";
-
-enum Gender {
-  MASCULINO = 1,
-  FEMININO = 2
-}
+import {Gender} from "../../../shared/enums/enums/global.enum";
 
 @Component({
   selector: 'app-new-diagnosis',
@@ -98,7 +94,7 @@ export class NewDiagnosisPage implements OnInit {
       this.patientData.cep,
       this.patientData.addressNumber).subscribe((res: any) => {
       this.functionsService.toastAlert('top', 'Paciente cadastrado com sucesso!', 'success');
-      this.router.navigate([`tabs/home/diagnostics/${res.insertId}`]);
+      this.router.navigate([`tabs/home/diagnostics/` + res.insertId]);
     })
   }
 

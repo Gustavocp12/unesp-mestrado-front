@@ -15,14 +15,19 @@ export class HomePage implements OnInit {
 
   items = [
     {
-      name: 'Novo diagnóstico',
+      name: 'Novo paciente/diagnóstico',
       icon: 'sparkles-outline',
       redirectTo: 'new-diagnosis'
     },
     {
-      name: 'Diagóstico já existente',
+      name: 'Pacientes com diagnóstico',
       icon: 'analytics-outline',
       redirectTo: 'existing-diagnosis'
+    },
+    {
+      name: 'Pacientes sem diagnóstico',
+      icon: 'people-outline',
+      redirectTo: 'patients'
     }]
 
   redirectTo(redirectTo: string) {

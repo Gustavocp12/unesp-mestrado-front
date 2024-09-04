@@ -3,20 +3,7 @@ import {PatientDiagnosis} from "../../../shared/interfaces/patients";
 import {PatientsService} from "../../../shared/services/patients.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FunctionsService} from "../../../shared/services/functions.service";
-
-enum Diagnosis {
-  POSITIVO = 1,
-  NEGATIVO = 2,
-  INCONCLUSIVO = 3
-}
-
-enum DiagnosisType {
-  ELISA = 1,
-  RIFI = 2,
-  TESTE_RAPIDO = 3,
-  CITOLOGIA = 4,
-  PCR = 5
-}
+import {Diagnosis, DiagnosisType} from "../../../shared/enums/enums/global.enum";
 
 @Component({
   selector: 'app-diagnostics',
@@ -67,6 +54,8 @@ export class DiagnosticsPage implements OnInit {
   }
 
   save(){
+    const userID = parseInt(localStorage.getItem('userID')!);
+
     if (this.patientDiagnostic.diagnosis === null || this.patientDiagnostic.diagnosisType === null) return
 
     if (!this.putValues){
@@ -74,7 +63,8 @@ export class DiagnosticsPage implements OnInit {
         this.patientDiagnostic.diagnosis,
         this.patientDiagnostic.diagnosisType,
         this.patientDiagnostic.clinicalSigns,
-        this.idUrl).subscribe(() => {
+        this.idUrl,
+        userID).subscribe(() => {
         this.functionsService.toastAlert('top', 'Diagnóstico do paciente registrado com sucesso!', 'success');
         this.router.navigate(['tabs/home']);
       })

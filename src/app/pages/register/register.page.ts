@@ -45,13 +45,14 @@ export class RegisterPage implements OnInit {
   }
 
   register(){
+    const replacePhone = this.registerData.phone?.toString();
+    this.registerData.phone = parseInt(replacePhone!.replace(/\D/g, ''));
+
     if (this.registerData.phone && this.registerData.crmv)
     this.registerService.register(this.registerData.name, this.registerData.phone, this.registerData.clinic, this.registerData.crmv, this.registerData.email, this.registerData.password).subscribe(
       () => {
         this.functionsService.toastAlert('top', 'Cadastro realizado com sucesso! Redirecionando para o login', 'success');
-        setTimeout(() => {
-          this.router.navigate(['/login']);
-        }, 2000);
+        this.router.navigate(['/login']);
       }
     )
   }

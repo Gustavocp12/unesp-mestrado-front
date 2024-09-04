@@ -2,19 +2,15 @@ ion-header{
   font-size: 20px;
   margin-bottom: 120px;
 
-  .label{
-    padding: 10px;
-  }
-
   .rectangle{
     width: 100vw;
-    height: 130px;
+    height: 60px;
     background-color: #9B8AFB;
     position: absolute;
     top: 0;
     z-index: -1;
     margin: -16px;
-    border-bottom-right-radius: 50% 130px;
+    border-bottom-right-radius: 50% 80px;
     overflow: hidden;
   }
 }

@@ -12,4 +12,6 @@ export interface PatientDiagnosis{
   clinicalSigns: string;
 }
 
-export interface Patients extends PatientData, PatientDiagnosis{}
+export interface Patients extends PatientData, PatientDiagnosis{
+  IDP: string;
+}

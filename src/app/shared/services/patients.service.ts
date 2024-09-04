@@ -14,8 +14,8 @@ export class PatientsService {
     return this.http.post<PatientData>(environment.api + '/createPatient', { name, birth, gender, cep, addressNumber });
   }
 
-  public createPatientDiagnosis(diagnosis: number, diagnosisType: number, clinicalSigns: string, IDP: number) {
-    return this.http.post<PatientDiagnosis>(environment.api + '/createDiagnostic', { diagnosis, diagnosisType, clinicalSigns, IDP });
+  public createPatientDiagnosis(diagnosis: number, diagnosisType: number, clinicalSigns: string, IDP: number, IDU: number) {
+    return this.http.post<PatientDiagnosis>(environment.api + '/createDiagnostic', { diagnosis, diagnosisType, clinicalSigns, IDP, IDU });
   }
 
   public getDiagnosticByPatientId(id: number) {
@@ -24,6 +24,10 @@ export class PatientsService {
 
   public putDiagnostic(diagnosis: number, diagnosisType: number, clinicalSigns: string, IDP: number) {
     return this.http.put(environment.api + '/putDiagnostic/' + IDP, { diagnosis, diagnosisType, clinicalSigns });
+  }
+
+  public getAllDiagnosticByUserID(IDU: number) {
+    return this.http.get(environment.api + '/findAllDiagnosticByUserID/' + IDU);
   }
 
 }

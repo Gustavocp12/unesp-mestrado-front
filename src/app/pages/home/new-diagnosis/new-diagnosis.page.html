@@ -96,6 +96,12 @@
     </ion-list>
 
     <div class="buttons">
+      <div class="align-left red">
+        <ion-button [disabled]="emptyFields">
+          Salvar e voltar
+          <ion-icon slot="start" name="arrow-back"></ion-icon>
+        </ion-button>
+      </div>
       <div class="align-right blue">
         <ion-button [disabled]="emptyFields" (click)="savePatientsAndNextPage()">
           Salvar e ir para diagnóstico

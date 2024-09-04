@@ -17,20 +17,22 @@
     <ion-icon id="iconSearch" name="search-outline"></ion-icon>
   </ion-item>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Nome do paciente</ion-card-title>
-      <ion-card-subtitle>Informações do paciente</ion-card-subtitle>
-    </ion-card-header>
+  @for(patient of patients; track patient){
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{patient.name}}</ion-card-title>
+        <ion-card-subtitle>Informações do paciente</ion-card-subtitle>
+      </ion-card-header>
 
-    <ion-card-content>
-      <ion-label>Idade: 00 anos</ion-label>
-      <ion-label>Sexo: Masculino</ion-label>
-      <ion-label>Data de nascimento: 00/00/0000</ion-label>
-      <ion-label>Endereço: Rua, 00 - Bairro, Cidade - UF</ion-label>
-    </ion-card-content>
+      <ion-card-content>
+        <ion-label>Idade: {{ dateToAge(patient.birth)}}</ion-label>
+        <ion-label>Sexo: {{ Gender[patient.gender ?? 0] || 'Indefinido' }}</ion-label>
+        <ion-label>Data de nascimento: {{ formatDate(patient.birth) }}</ion-label>
+        <ion-label>Endereço: {{ cepToAddress(patient.cep, patient.IDP, patient.addressNumber)}}</ion-label>
+      </ion-card-content>
 
-    <ion-button>Alterar dados do paciente</ion-button>
-    <ion-button>Alterar dados do diagnóstico</ion-button>
-  </ion-card>
+      <ion-button>Alterar dados do paciente</ion-button>
+      <ion-button>Alterar dados do diagnóstico</ion-button>
+    </ion-card>
+  }
 </ion-content>
