@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {PatientsService} from "../../../shared/services/patients.service";
 import {Patients} from "../../../shared/interfaces/patients";
-import {Diagnosis, Gender} from "../../../shared/enums/enums/global.enum";
+import {Gender} from "../../../shared/enums/enums/global.enum";
 import {ViacepService} from "../../../shared/services/viacep.service";
-import {Observable} from "rxjs";
+import {LoadingController} from "@ionic/angular";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-existing-diagnosis',
@@ -12,7 +13,10 @@ import {Observable} from "rxjs";
 })
 export class ExistingDiagnosisPage implements OnInit {
 
-  constructor(private patientsService: PatientsService, private viaCepService: ViacepService) { }
+  constructor(private patientsService: PatientsService,
+              private viaCepService: ViacepService,
+              private router: Router,
+              private loadingController: LoadingController) { }
 
   patients: Patients[] = [];
 
@@ -25,7 +29,7 @@ export class ExistingDiagnosisPage implements OnInit {
 
     this.patientsService.getAllDiagnosticByUserID(userID).subscribe((data: any) => {
       this.patients = data;
-      console.log(this.patients);
+      this.loadAddress();
     });
   }
 
@@ -61,17 +65,46 @@ export class ExistingDiagnosisPage implements OnInit {
     return `${years} anos, ${months} meses e ${days} dias`;
   }
 
-  patientAddresses: { [key: string]: string } = {};
+  patientAddresses: { [key: string]: string | null } = {};
 
-  cepToAddress(cep: string, patientId: string, addressNumber: number | null) {
-    if (!this.patientAddresses[patientId]) {
-      this.viaCepService.get(cep).subscribe((data: any) => {
-        this.patientAddresses[patientId] = `${data.logradouro}, ${addressNumber} - ${data.bairro} - Araçatuba/SP`;
-      });
+  async loadAddress() {
+    for (const patient of this.patients) {
+      if (!this.patientAddresses[patient.IDP]) {
+        this.patientAddresses[patient.IDP] = await this.cepToAddress(patient.cep, patient.IDP, patient.addressNumber);
+      }
     }
-    return this.patientAddresses[patientId];
   }
 
-  protected readonly Diagnosis = Diagnosis;
+  async cepToAddress(cep: string, patientId: string, addressNumber: number | null): Promise<string | null> {
+    if (this.patientAddresses[patientId]) {
+      return this.patientAddresses[patientId];
+    }
+
+    const loading = await this.loadingController.create({ message: 'Carregando. . .' });
+    await loading.present();
+
+    return new Promise((resolve, reject) => {
+      this.viaCepService.get(cep).subscribe(
+        (data: any) => {
+          loading.dismiss();
+          this.patientAddresses[patientId] = `${data.logradouro}, ${addressNumber} - ${data.bairro} - Araçatuba/SP`;
+          resolve(this.patientAddresses[patientId]);
+        },
+        (error) => {
+          loading.dismiss();
+          reject(error);
+        }
+      );
+    });
+  }
+
+  goToDiagnostic(patientID: string){
+    this.router.navigate(['tabs/home/diagnostics/' + patientID]);
+  }
+
+  goToEditPatient(patientID: string){
+    this.router.navigate(['tabs/home/existing-diagnosis/edit-patients/' + patientID]);
+  }
+
   protected readonly Gender = Gender;
 }

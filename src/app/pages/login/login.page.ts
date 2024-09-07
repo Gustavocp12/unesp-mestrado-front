@@ -16,16 +16,29 @@ export class LoginPage implements OnInit {
     email: '',
     password: ''
   }
+  emptyValues = true;
+  emailValid: boolean = true;
 
   ngOnInit() {
   }
 
+  changeValues(){
+    this.emptyValues = !(this.loginInterface.email !== '' && this.loginInterface.password !== '');
+    this.validateEmail();
+  }
+
+  validateEmail(){
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+    this.emailValid = emailPattern.test(this.loginInterface.email);
+  }
+
   login(){
     this.authService.login(this.loginInterface.email, this.loginInterface.password).subscribe((res: any) => {
-      localStorage.setItem('token', res.token);
-      localStorage.setItem('userID', res.userID);
-
-      this.router.navigate(['/tabs']);
+      if (res.token && res.userID) {
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('userID', res.userID);
+        this.router.navigate(['/tabs']);
+      }
     })
   }
 

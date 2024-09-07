@@ -30,4 +30,12 @@ export class PatientsService {
     return this.http.get(environment.api + '/findAllDiagnosticByUserID/' + IDU);
   }
 
+  public getPatientById(IDP: number) {
+    return this.http.get(environment.api + '/getPatientById/' + IDP);
+  }
+
+  public putPatient(name: string, birth: string, gender: number, cep: string, addressNumber: number, IDP: number) {
+    return this.http.put(environment.api + '/putPatient/' + IDP, { name, birth, gender, cep, addressNumber});
+  }
+
 }

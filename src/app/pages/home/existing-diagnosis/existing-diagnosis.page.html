@@ -28,11 +28,11 @@
         <ion-label>Idade: {{ dateToAge(patient.birth)}}</ion-label>
         <ion-label>Sexo: {{ Gender[patient.gender ?? 0] || 'Indefinido' }}</ion-label>
         <ion-label>Data de nascimento: {{ formatDate(patient.birth) }}</ion-label>
-        <ion-label>Endereço: {{ cepToAddress(patient.cep, patient.IDP, patient.addressNumber)}}</ion-label>
+        <ion-label>Endereço: {{ patientAddresses[patient.IDP] }}</ion-label>
       </ion-card-content>
 
-      <ion-button>Alterar dados do paciente</ion-button>
-      <ion-button>Alterar dados do diagnóstico</ion-button>
+      <ion-button (click)="goToEditPatient(patient.IDP)">Alterar dados do paciente</ion-button>
+      <ion-button (click)="goToDiagnostic(patient.IDP)">Alterar diagnóstico</ion-button>
     </ion-card>
   }
 </ion-content>

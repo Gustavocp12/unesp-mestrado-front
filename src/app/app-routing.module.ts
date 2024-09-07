@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {TabsComponent} from "./shared/components/tabs/tabs.component";
+import {AuthGuard} from "./shared/guards/auth.guard";
 
 const routes: Routes = [
   {
     path: 'tabs',
     component: TabsComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'home',

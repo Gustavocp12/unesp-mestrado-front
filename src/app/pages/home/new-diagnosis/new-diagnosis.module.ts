@@ -20,7 +20,9 @@ import {CalendarComponent} from "../../../shared/components/calendar/calendar.co
     MaskDateDirective,
     MaskCepDirective
   ],
-    exports: [],
+    exports: [
+        CalendarComponent
+    ],
   declarations: [NewDiagnosisPage, CalendarComponent]
 })
 export class NewDiagnosisPageModule {}

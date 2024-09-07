@@ -15,15 +15,18 @@
         <ion-item>
 
           <ion-input label="Email" labelPlacement="stacked" type="text" id="email" name="email"
-                     placeholder="Insira seu email" [(ngModel)]="loginInterface.email">
+                     placeholder="Insira seu email" [(ngModel)]="loginInterface.email" (ionInput)="changeValues()">
           </ion-input>
+          @if(!emailValid){
+            <small class="error-msg">Formato de email inválido.</small>
+          }
 
         </ion-item>
 
         <ion-item>
 
           <ion-input label="Senha" labelPlacement="stacked" type="password" id="password" name="password"
-                     placeholder="Insira sua senha" [(ngModel)]="loginInterface.password">
+                     placeholder="Insira sua senha" [(ngModel)]="loginInterface.password" (ionInput)="changeValues()">
           </ion-input>
 
           <ion-icon id="iconPassword" name="eye-off-outline" (click)="toggleType('password', 'iconPassword')"></ion-icon>
@@ -37,7 +40,7 @@
 
       </ion-list>
 
-      <ion-button expand="block" (click)="login()">Entrar</ion-button>
+      <ion-button expand="block" [disabled]="emptyValues" (click)="login()">Entrar</ion-button>
 
       <div class="texts">
         <p>Não possui uma conta?</p>
