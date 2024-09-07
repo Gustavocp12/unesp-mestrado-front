@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PatientData} from "../../../shared/interfaces/patients";
 import {PatientsService} from "../../../shared/services/patients.service";
 import {FunctionsService} from "../../../shared/services/functions.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ViacepService} from "../../../shared/services/viacep.service";
 import {LoadingController} from "@ionic/angular";
 import {Gender} from "../../../shared/enums/enums/global.enum";
@@ -86,15 +86,34 @@ export class NewDiagnosisPage implements OnInit {
   savePatientsAndNextPage() {
     if (this.patientData.gender === null || this.patientData.addressNumber === null) return;
     this.patientData.cep = this.patientData.cep.replace('-', '');
+    const userID = parseInt(localStorage.getItem('userID')!);
 
     this.patientsService.createPatient(
       this.patientData.name,
       this.birthForSave,
       this.patientData.gender,
       this.patientData.cep,
-      this.patientData.addressNumber).subscribe((res: any) => {
+      this.patientData.addressNumber,
+      userID).subscribe((res: any) => {
       this.functionsService.toastAlert('top', 'Paciente cadastrado com sucesso!', 'success');
       this.router.navigate([`tabs/home/diagnostics/` + res.insertId]);
+    })
+  }
+
+  savePatientAndBack() {
+    if (this.patientData.gender === null || this.patientData.addressNumber === null) return;
+    this.patientData.cep = this.patientData.cep.replace('-', '');
+    const userID = parseInt(localStorage.getItem('userID')!);
+
+    this.patientsService.createPatient(
+      this.patientData.name,
+      this.birthForSave,
+      this.patientData.gender,
+      this.patientData.cep,
+      this.patientData.addressNumber,
+      userID).subscribe((res: any) => {
+      this.functionsService.toastAlert('top', 'Paciente cadastrado com sucesso!', 'success');
+      this.router.navigate([`tabs/home`]);
     })
   }
 

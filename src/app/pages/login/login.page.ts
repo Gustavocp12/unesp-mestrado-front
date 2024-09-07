@@ -18,8 +18,18 @@ export class LoginPage implements OnInit {
   }
   emptyValues = true;
   emailValid: boolean = true;
+  rememberLogin: boolean = false;
 
   ngOnInit() {
+    this.verifySavedEmail();
+  }
+
+  verifySavedEmail(){
+    const savedEmail = localStorage.getItem('savedEmail');
+    if (savedEmail) {
+      this.loginInterface.email = savedEmail;
+      this.rememberLogin = true;
+    }
   }
 
   changeValues(){
@@ -37,6 +47,13 @@ export class LoginPage implements OnInit {
       if (res.token && res.userID) {
         localStorage.setItem('token', res.token);
         localStorage.setItem('userID', res.userID);
+
+        if (this.rememberLogin) {
+          localStorage.setItem('savedEmail', this.loginInterface.email);
+        } else {
+          localStorage.removeItem('savedEmail');
+        }
+
         this.router.navigate(['/tabs']);
       }
     })

@@ -10,8 +10,8 @@ export class PatientsService {
 
   constructor(private http: HttpClient) { }
 
-  public createPatient(name: string, birth: string, gender: number, cep: string, addressNumber: number) {
-    return this.http.post<PatientData>(environment.api + '/createPatient', { name, birth, gender, cep, addressNumber });
+  public createPatient(name: string, birth: string, gender: number, cep: string, addressNumber: number, IDU: number) {
+    return this.http.post<PatientData>(environment.api + '/createPatient', { name, birth, gender, cep, addressNumber, IDU });
   }
 
   public createPatientDiagnosis(diagnosis: number, diagnosisType: number, clinicalSigns: string, IDP: number, IDU: number) {
@@ -36,6 +36,10 @@ export class PatientsService {
 
   public putPatient(name: string, birth: string, gender: number, cep: string, addressNumber: number, IDP: number) {
     return this.http.put(environment.api + '/putPatient/' + IDP, { name, birth, gender, cep, addressNumber});
+  }
+
+  public getPatientsWithoutDiagnosis(IDU: number) {
+    return this.http.get(environment.api + '/getAllPatientsWithoutDiagnostic/' + IDU);
   }
 
 }

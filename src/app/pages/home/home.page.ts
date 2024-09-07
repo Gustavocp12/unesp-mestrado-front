@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
     {
       name: 'Pacientes sem diagnóstico',
       icon: 'people-outline',
-      redirectTo: 'patients'
+      redirectTo: 'patient-without-diagnosis'
     }]
 
   redirectTo(redirectTo: string) {

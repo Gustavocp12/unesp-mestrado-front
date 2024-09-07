@@ -62,6 +62,10 @@ export class RegisterPage implements OnInit {
     this.emptyFields = !(this.registerData.email && this.registerData.password);
   }
 
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
 
 
 }

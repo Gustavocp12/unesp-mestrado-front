@@ -1,0 +1,37 @@
+<ion-content [fullscreen]="true" class="backgroundColor ion-padding">
+
+  <ion-header>
+    Lista de pacientes
+  </ion-header>
+
+  <ion-item>
+    <ion-input
+      type="search"
+      placeholder="Buscar"
+      labelPlacement="stacked"
+      id="search"
+      name="search"
+      clearInput>
+    </ion-input>
+
+    <ion-icon id="iconSearch" name="search-outline"></ion-icon>
+  </ion-item>
+
+  @for(patient of patients; track patient){
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{patient.name}}</ion-card-title>
+        <ion-card-subtitle>Informações do paciente</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-label>Idade: {{ dateToAge(patient.birth)}}</ion-label>
+        <ion-label>Sexo: {{ Gender[patient.gender ?? 0] || 'Indefinido' }}</ion-label>
+        <ion-label>Data de nascimento: {{ formatDate(patient.birth) }}</ion-label>
+        <ion-label>Endereço: {{ patientAddresses[patient.IDP] }}</ion-label>
+      </ion-card-content>
+
+      <ion-button (click)="goToDiagnostic(patient.IDP)">Realizar diagnóstico</ion-button>
+    </ion-card>
+  }
+</ion-content>

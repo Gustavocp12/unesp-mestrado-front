@@ -19,7 +19,11 @@ const routes: Routes = [
   {
     path: 'diagnostics/:id',
     loadChildren: () => import('./diagnostics/diagnostics.module').then( m => m.DiagnosticsPageModule)
+  },  {
+    path: 'patient-without-diagnosis',
+    loadChildren: () => import('./patient-without-diagnosis/patient-without-diagnosis.module').then( m => m.PatientWithoutDiagnosisPageModule)
   }
+
 
 ];
 

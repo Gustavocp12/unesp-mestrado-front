@@ -97,7 +97,7 @@
 
     <div class="buttons">
       <div class="align-left red">
-        <ion-button [disabled]="emptyFields">
+        <ion-button (click)="savePatientAndBack()" [disabled]="emptyFields">
           Salvar e voltar
           <ion-icon slot="start" name="arrow-back"></ion-icon>
         </ion-button>
