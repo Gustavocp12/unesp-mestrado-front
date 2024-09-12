@@ -60,7 +60,7 @@ export class LoginPage implements OnInit {
   }
 
   goToRegister(){
-    this.router.navigate(['/register']);
+    this.router.navigate(['/register'], { state: { actualPage: 'PERSONAL_DATA' } });
   }
 
 

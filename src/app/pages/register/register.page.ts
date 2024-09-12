@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {LoginData, PersonalData, Register} from "../../shared/interfaces/register";
 import {RegisterService} from "../../shared/services/register.service";
 import {FunctionsService} from "../../shared/services/functions.service";
@@ -30,6 +30,8 @@ export class RegisterPage implements OnInit {
   constructor(private registerService: RegisterService, private functionsService: FunctionsService, private router: Router) { }
 
   ngOnInit() {
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as { actualPage: string };
   }
 
   receivePersonalData(event: PersonalData) {
