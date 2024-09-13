@@ -3,6 +3,7 @@ import {LoginData, PersonalData, Register} from "../../shared/interfaces/registe
 import {RegisterService} from "../../shared/services/register.service";
 import {FunctionsService} from "../../shared/services/functions.service";
 import {Router} from "@angular/router";
+import {LoadingController} from "@ionic/angular";
 
 enum Page {
   PERSONAL_DATA = 1,
@@ -27,7 +28,7 @@ export class RegisterPage implements OnInit {
     password: ''
   }
 
-  constructor(private registerService: RegisterService, private functionsService: FunctionsService, private router: Router) { }
+  constructor(private registerService: RegisterService, private functionsService: FunctionsService, private router: Router, private loadingController: LoadingController) { }
 
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
@@ -46,17 +47,23 @@ export class RegisterPage implements OnInit {
     this.emptyFields = !(this.registerData.email && this.registerData.password);
   }
 
-  register(){
+  async register(){
     const replacePhone = this.registerData.phone?.toString();
     this.registerData.phone = parseInt(replacePhone!.replace(/\D/g, ''));
+
+    const loading = await this.loadingController.create();
+    await loading.present();
 
     if (this.registerData.phone && this.registerData.crmv)
     this.registerService.register(this.registerData.name, this.registerData.phone, this.registerData.clinic, this.registerData.crmv, this.registerData.email, this.registerData.password).subscribe(
       () => {
-        this.functionsService.toastAlert('top', 'Cadastro realizado com sucesso! Redirecionando para o login', 'success');
+        this.functionsService.toastAlert('top', 'Cadastro realizado com sucesso! Aguarde a validação por email', 'success');
+        loading.dismiss();
         this.router.navigate(['/login']);
-      }
-    )
+      }, () => {
+        this.functionsService.toastAlert('top', 'Erro ao cadastrar');
+        loading.dismiss();
+      })
   }
 
   nextPage() {

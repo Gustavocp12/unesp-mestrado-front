@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Login} from "../../shared/interfaces/login";
 import {AuthService} from "../../shared/services/auth.service";
 import {Router} from "@angular/router";
+import {LoadingController} from "@ionic/angular";
+import {FunctionsService} from "../../shared/services/functions.service";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,7 @@ import {Router} from "@angular/router";
 })
 export class LoginPage implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private loadingController: LoadingController, private functionsService: FunctionsService) { }
 
   loginInterface: Login = {
     email: '',
@@ -42,7 +44,11 @@ export class LoginPage implements OnInit {
     this.emailValid = emailPattern.test(this.loginInterface.email);
   }
 
-  login(){
+  async login(){
+
+    const loading = await this.loadingController.create();
+    await loading.present();
+
     this.authService.login(this.loginInterface.email, this.loginInterface.password).subscribe((res: any) => {
       if (res.token && res.userID) {
         localStorage.setItem('token', res.token);
@@ -54,9 +60,14 @@ export class LoginPage implements OnInit {
           localStorage.removeItem('savedEmail');
         }
 
+        loading.dismiss();
+        this.functionsService.toastAlert('top', 'Login efetuado com sucesso', 'success');
         this.router.navigate(['/tabs']);
       }
-    })
+    }, () => {
+      this.functionsService.toastAlert('top', 'Erro ao fazer login');
+      loading.dismiss();
+    });
   }
 
   goToRegister(){
