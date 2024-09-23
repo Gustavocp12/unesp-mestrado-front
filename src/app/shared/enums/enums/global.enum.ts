@@ -1,6 +1,6 @@
 export enum Gender {
-  MASCULINO = 1,
-  FEMININO = 2
+  MACHO = 1,
+  FEMEA = 2
 }
 
 export enum Diagnosis {

@@ -19,9 +19,19 @@ export class ExistingDiagnosisPage implements OnInit {
               private loadingController: LoadingController) { }
 
   patients: Patients[] = [];
+  filteredPatients: Patients[] = [];
+  searchTerm: string = '';
 
   ngOnInit() {
     this.getAllDiagnosticsByUserID();
+  }
+
+  filterPatients() {
+    const searchLower = this.searchTerm.toLowerCase();
+
+    this.filteredPatients = this.patients.filter(patient =>
+      patient.name.toLowerCase().includes(searchLower)
+    );
   }
 
   getAllDiagnosticsByUserID(){
@@ -29,6 +39,7 @@ export class ExistingDiagnosisPage implements OnInit {
 
     this.patientsService.getAllDiagnosticByUserID(userID).subscribe((data: any) => {
       this.patients = data;
+      this.filteredPatients = this.patients;
       this.loadAddress();
     });
   }

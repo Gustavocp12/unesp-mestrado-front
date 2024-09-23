@@ -14,6 +14,8 @@ import {LoadingController} from "@ionic/angular";
 export class PatientWithoutDiagnosisPage implements OnInit {
 
   patients: Patients[] = [];
+  filteredPatients: Patients[] = [];
+  searchTerm: string = '';
 
   constructor(private patientsService: PatientsService,
               private viaCepService: ViacepService,
@@ -24,11 +26,20 @@ export class PatientWithoutDiagnosisPage implements OnInit {
     this.getAllDiagnosticsByUserID();
   }
 
+  filterPatients() {
+    const searchLower = this.searchTerm.toLowerCase();
+
+    this.filteredPatients = this.patients.filter(patient =>
+      patient.name.toLowerCase().includes(searchLower)
+    );
+  }
+
   getAllDiagnosticsByUserID(){
     const userID = parseInt(localStorage.getItem('userID')!);
 
     this.patientsService.getPatientsWithoutDiagnosis(userID).subscribe((data: any) => {
       this.patients = data;
+      this.filteredPatients = this.patients;
       this.loadAddress();
     });
   }

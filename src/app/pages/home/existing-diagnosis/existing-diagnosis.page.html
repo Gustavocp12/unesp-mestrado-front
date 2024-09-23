@@ -11,13 +11,15 @@
       labelPlacement="stacked"
       id="search"
       name="search"
+      [(ngModel)]="searchTerm"
+      (ionInput)="filterPatients()"
       clearInput>
     </ion-input>
 
     <ion-icon id="iconSearch" name="search-outline"></ion-icon>
   </ion-item>
 
-  @for(patient of patients; track patient){
+  @for(patient of filteredPatients; track patient){
     <ion-card>
       <ion-card-header>
         <ion-card-title>{{patient.name}}</ion-card-title>
